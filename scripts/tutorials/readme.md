@@ -1,7 +1,7 @@
-
 # Tutorials
 
 ### Table of Contents
+
 <ul>
 <li><a href="#setup">Setup</a><br>
 <li><a href="#t1">Tutorial 1</a>
@@ -22,11 +22,14 @@ You can replace pansim with a name of your choice. <b>Continue using this termin
 
 <li>Clone the repository this is done by entering the following in a terminal/command prompt window.
 
-With HTTPS: 
+With HTTPS:
+
 ```shell
 git clone https://github.com/cs395t-ethical-ai/PandemicSimulatorTutorial.git
 ```
+
 With SSH
+
 ```shell
 git clone git@github.com:cs395t-ethical-ai/PandemicSimulatorTutorial.git
 ```
@@ -37,6 +40,7 @@ git clone git@github.com:cs395t-ethical-ai/PandemicSimulatorTutorial.git
 cd PandemicSimulatorTutorial
 python -m pip install -e .
 ```
+
 </ol>
 
 Congratulations you finished the setup. Time to start the first Tutorial.
@@ -44,7 +48,7 @@ Congratulations you finished the setup. Time to start the first Tutorial.
 <h2 id="#t1">Tutorial 1</h2>
 
 Welcome to the first tutorial.<br>
-After this tutorial, you should get an idea of what this repository is about. You will manually control the stage of response to a simulated pandemic. After that by studying the observations try to create a response policy using if-else statements. 
+After this tutorial, you should get an idea of what this repository is about. You will manually control the stage of response to a simulated pandemic. After that by studying the observations try to create a response policy using if-else statements.
 
 <ol>
 <li><b>Skim the <a href="https://arxiv.org/abs/2010.10560">Original Paper</a>.</b> <br>This will help you understand the background of this problem and the environment.
@@ -56,39 +60,43 @@ After this tutorial, you should get an idea of what this repository is about. Yo
 <li><b>Run scripts/tutorials/11_custom_policy_test.py </b><br> Take your policy from scripts/tutorials/custom_policy_if_else.py and run this script to evaluate your policy over multiple episodes.
 
 <br><br>
+
 <h3 id="#xobs">Explaining the Observation and Action</h3>
 
 <b>Observation Table</b>
 
 ---
-|Observation|Explanation|How to Access|
-| ----------- | -----------| ----------- |
-|Critical Population (Testing)|Number of people in Critical condition according to current testing policy|obs.global_testing_summary[...,0]|
-|Dead Population (Testing)|Number of people in dead according to current testing policy|obs.global_testing_summary[...,1]|
-|Infected Population (Testing)|Number of people in Infected condition according to current testing policy|obs.global_testing_summary[...,2]|
-|None Population (Testing)|Number of people in not in any other condition according to current testing policy|obs.global_testing_summary[...,3]|
-|Recovered Population (Testing)|Number of people in Recovered condition according to current testing policy|obs.global_testing_summary[...,4]|
-|Critical Population (Actual)| Actual number of people in Critical condition|obs.global_infection_summary[...,0]|
-|Dead Population (Actual)|Actual number of people in dead |obs.global_infection_summary[...,1]|
-|Infected Population (Actual)|Actual number of people in Infected condition |obs.global_infection_summary[...,2]|
-|None Population (Actual)|Actual number of people in not in any other condition |obs.global_infection_summary[...,3]|
-|Recovered Population (Actual)|Actual number of people in Recovered condition |obs.global_infection_summary[...,4]|
-|Current Stage|Stage of Response at Current timestep|obs.stage[...,0]|
-|Infection Flag|Whether Number of Infected People according to current testing policy exceeds threshold specified according to current simulator configuration (10 by default)|obs.infection_above_threshold[...,0]|
-|Current Day|Current Day of simulation|obs.time_day[...,0]|
-|Current Unlocked Non Essential Business Locations|List of ids of businesses that are Unlocked (By default additional businesses are not used in the simulator, so this is unused) |obs.unlocked_non_essential_business_locations[...,0]|
----
 
-<b>Action  Table</b>
+| Observation                                       | Explanation                                                                                                                                                    | How to Access                                        |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Critical Population (Testing)                     | Number of people in Critical condition according to current testing policy                                                                                     | obs.global_testing_summary[...,0]                    |
+| Dead Population (Testing)                         | Number of people in dead according to current testing policy                                                                                                   | obs.global_testing_summary[...,1]                    |
+| Infected Population (Testing)                     | Number of people in Infected condition according to current testing policy                                                                                     | obs.global_testing_summary[...,2]                    |
+| None Population (Testing)                         | Number of people in not in any other condition according to current testing policy                                                                             | obs.global_testing_summary[...,3]                    |
+| Recovered Population (Testing)                    | Number of people in Recovered condition according to current testing policy                                                                                    | obs.global_testing_summary[...,4]                    |
+| Critical Population (Actual)                      | Actual number of people in Critical condition                                                                                                                  | obs.global_infection_summary[...,0]                  |
+| Dead Population (Actual)                          | Actual number of people in dead                                                                                                                                | obs.global_infection_summary[...,1]                  |
+| Infected Population (Actual)                      | Actual number of people in Infected condition                                                                                                                  | obs.global_infection_summary[...,2]                  |
+| None Population (Actual)                          | Actual number of people in not in any other condition                                                                                                          | obs.global_infection_summary[...,3]                  |
+| Recovered Population (Actual)                     | Actual number of people in Recovered condition                                                                                                                 | obs.global_infection_summary[...,4]                  |
+| Current Stage                                     | Stage of Response at Current timestep                                                                                                                          | obs.stage[...,0]                                     |
+| Infection Flag                                    | Whether Number of Infected People according to current testing policy exceeds threshold specified according to current simulator configuration (10 by default) | obs.infection_above_threshold[...,0]                 |
+| Current Day                                       | Current Day of simulation                                                                                                                                      | obs.time_day[...,0]                                  |
+| Current Unlocked Non Essential Business Locations | List of ids of businesses that are Unlocked (By default additional businesses are not used in the simulator, so this is unused)                                | obs.unlocked_non_essential_business_locations[...,0] |
 
 ---
-|Stages|Stay home if sick, Practice good hygiene| Wear facial coverings| Social distancing| Avoid gathering size (Risk: number)|Locked locations|
-| ----------- | -----------| ----------- | ----------- | -----------| ----------- |
-|Stage 0| False|False|None|None|None|
-|Stage 1| True|False|None|Low: 50, High: 25|None|
-|Stage 2| True|True|0.3|Low: 25, High: 10|School, Hair Salon|
-|Stage 3| True|True|0.5|Low: 0, High: 0 |School, Hair Salon|
-|Stage 4| True|True|0.7|Low: 0, High: 0 |School, Hair Salon, Office, Retail Store|
+
+<b>Action Table</b>
+
+---
+
+| Stages  | Stay home if sick, Practice good hygiene | Wear facial coverings | Social distancing | Avoid gathering size (Risk: number) | Locked locations                                     |
+| ------- | ---------------------------------------- | --------------------- | ----------------- | ----------------------------------- | ---------------------------------------------------- |
+| Stage 0 | False                                    | False                 | None              | None                                | None                                                 |
+| Stage 1 | True                                     | False                 | None              | Low: 50, High: 25                   | None                                                 |
+| Stage 2 | True                                     | True                  | 0.3               | Low: 25, High: 10                   | School, University, Hair Salon                       |
+| Stage 3 | True                                     | True                  | 0.5               | Low: 0, High: 0                     | School, University, Hair Salon                       |
+| Stage 4 | True                                     | True                  | 0.7               | Low: 0, High: 0                     | School, University, Hair Salon, Office, Retail Store |
 
 ---
 
@@ -102,11 +110,11 @@ In this tutorial we will work on modifying the observation. An observation consi
 
 This tutorial shows how to augment the observation with additional variables, so that we may create policies that explicitly consider this additional information. Specifically, we will create a flag indicating whether the current population has more critical cases than a certain threshold and add it to the observation.
 
-ALL LINE NUMBERS IN THE FOLLOWING REFER TO THE INITIAL STATE OF THE CODE. 
-PLEASE NOTE LINE NUMBER VALUES MAY CHANGE IF ADDITIONAL CHARACTERS OR LINES ARE ADDED WHILE CODING. 
-
+ALL LINE NUMBERS IN THE FOLLOWING REFER TO THE INITIAL STATE OF THE CODE.
+PLEASE NOTE LINE NUMBER VALUES MAY CHANGE IF ADDITIONAL CHARACTERS OR LINES ARE ADDED WHILE CODING.
 
 Steps
+
 <ol>
 <li><b>Switch to the Tutorial 2 branch via the following lines (run from the top level of the repository)</a></b>
     
@@ -119,12 +127,12 @@ git checkout tut2
 <li><b> Add Critical FLag </b><br>
 To modify the observation we can change the code at two levels. We can either change the structure of the simulator state or we can modify the final observation. For this tutorial we will modify the simulator state. The code for simulator state is in python/pandemic_simulator/environment/interfaces/sim_state.py
 
-For demonstration, we will be creating a new flag variable for the environment. This flag will check if the number of patients who are critical exceeds a threshold. The name of the variable should be `critical_above_threshold`. This variable is most similar to the existing `infection_above_threshold` variable. 
+For demonstration, we will be creating a new flag variable for the environment. This flag will check if the number of patients who are critical exceeds a threshold. The name of the variable should be `critical_above_threshold`. This variable is most similar to the existing `infection_above_threshold` variable.
 
 <ol>
 <li><b>Modify simulator state template to add new flag.</b><br>
  Open python/pandemic_simulator/environment/interfaces/sim_state.py
-(Line 52) Add code for the new flag in the specified area. This change will allow the sim_state to hold the new flag. 
+(Line 52) Add code for the new flag in the specified area. This change will allow the sim_state to hold the new flag.
 
 <li><b>Modify simulator config to add the threshold, as it is a characteristic of the simulator</b><br>
  Open python/pandemic_simulator/environment/simulator_opts.py 
@@ -136,9 +144,9 @@ Open python/pandemic_simulator/environment/pandemic_sim.py
 (Line 63,93,121) Here, we will have to modify the init function to add and initialize the new threshold variable. This is to enable users to add a value for our new flag when initializing the 
 Pandemic Simulator State.
 
-(Line 168) Change from_config function to pass in the new threshold variable. 
+(Line 168) Change from_config function to pass in the new threshold variable.
 
-(Line 325) Next we will have to modify the step function in pandemic_sim.py. The step function updates the simulator state after each timestep (hour); please update the state to reflect the `critical_above_threshold` value. 
+(Line 325) Next we will have to modify the step function in pandemic_sim.py. The step function updates the simulator state after each timestep (hour); please update the state to reflect the `critical_above_threshold` value.
 
 (Line 416) Then set a default value for the `critical_above_threshold` flag in the reset function.
 
@@ -155,4 +163,5 @@ Open python/pandemic_simulator/environment/interfaces/pandemic_observation.py
 ```shell
 python -m pip install -e .
 ```
+
 </ol>

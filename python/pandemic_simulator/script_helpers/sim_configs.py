@@ -14,6 +14,24 @@ A few references for the numbers selected:
 http://www.worldcitiescultureforum.com/data/number-of-restaurants-per-100.000-population (Austin)
 
 """
+# TODO: add austin_config
+
+austin_config = PandemicSimConfig(
+    num_persons=1251000,  # 1.251 million (2020)
+    location_configs=[
+        LocationConfig(Home, num=3000),
+        LocationConfig(GroceryStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Office, num=50, num_assignees=150, state_opts=dict(visitor_capacity=0)),
+        LocationConfig(School, num=100, num_assignees=4, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(University, num=1, num_assignees=55000, state_opts=dict(visitor_capacity=3000)),
+        LocationConfig(Hospital, num=10, num_assignees=30, state_opts=dict(patient_capacity=10)),
+        LocationConfig(RetailStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
+        LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+    ],
+    person_routine_assignment=DefaultPersonRoutineAssignment())
+
 
 town_config = PandemicSimConfig(
     num_persons=10000,

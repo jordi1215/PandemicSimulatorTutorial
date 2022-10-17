@@ -1,7 +1,7 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List
 
-from ..environment import PandemicRegulation, DEFAULT, Risk, Office, School, HairSalon, RetailStore, Restaurant, Bar
+from ..environment import PandemicRegulation, DEFAULT, Risk, Office, School, HairSalon, RetailStore, Restaurant, Bar, University
 
 __all__ = ['austin_regulations', 'italian_regulations', 'swedish_regulations']
 
@@ -14,6 +14,7 @@ austin_regulations: List[PandemicRegulation] = [
                        location_type_to_rule_kwargs={
                            Office: {'lock': False},
                            School: {'lock': False},
+                           University: {'lock': False},
                            HairSalon: {'lock': False},
                            RetailStore: {'lock': False},
                            Bar: {'lock': False},
@@ -28,6 +29,7 @@ austin_regulations: List[PandemicRegulation] = [
                        location_type_to_rule_kwargs={
                            Office: {'lock': False},
                            School: {'lock': False},
+                           University: {'lock': False},
                            HairSalon: {'lock': False},
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
@@ -42,6 +44,7 @@ austin_regulations: List[PandemicRegulation] = [
                        location_type_to_rule_kwargs={
                            Office: {'lock': False},
                            School: {'lock': True},
+                           University: {'lock': True},
                            HairSalon: {'lock': True},
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
@@ -56,6 +59,7 @@ austin_regulations: List[PandemicRegulation] = [
                        location_type_to_rule_kwargs={
                            Office: {'lock': False},
                            School: {'lock': True},
+                           University: {'lock': True},
                            HairSalon: {'lock': True},
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': True},
@@ -70,6 +74,7 @@ austin_regulations: List[PandemicRegulation] = [
                        location_type_to_rule_kwargs={
                            Office: {'lock': True},
                            School: {'lock': True},
+                           University: {'lock': True},
                            HairSalon: {'lock': True},
                            RetailStore: {'lock': True},
                            Restaurant: {'lock': True},
