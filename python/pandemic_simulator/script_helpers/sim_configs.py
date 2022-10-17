@@ -1,10 +1,10 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 
 from .person_routines import DefaultPersonRoutineAssignment
-from ..environment import Home, GroceryStore, Office, School, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
+from ..environment import Home, GroceryStore, Office, School, University, Hospital, RetailStore, HairSalon, Restaurant, Bar, \
     PandemicSimConfig, LocationConfig
 
-__all__ = ['town_config', 'small_town_config', 'test_config',
+__all__ = ['austin_config', 'town_config', 'small_town_config', 'test_config',
            'tiny_town_config', 'medium_town_config',
            'above_medium_town_config']
 

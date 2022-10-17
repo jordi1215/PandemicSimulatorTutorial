@@ -8,5 +8,6 @@ from .hospital import *
 from .office import *
 from .restaurant import *
 from .school import *
+from .university import *
 from .store import *
 from .utils import *
