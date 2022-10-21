@@ -17,18 +17,21 @@ http://www.worldcitiescultureforum.com/data/number-of-restaurants-per-100.000-po
 # TODO: add austin_config
 
 austin_config = PandemicSimConfig(
-    num_persons=1251000,  # 1.251 million (2020)
+    # num_persons=1251000,  # 1.251 million (2020)
+    num_persons=964177,  # https://datacommons.org/place/geoId/4805000?utm_medium=explore&mprop=count&popt=Person&hl=en
+    # num_persons=164177,
+    # Population: 964,177 (2021) www2.census.gov
     location_configs=[
-        LocationConfig(Home, num=3000),
-        LocationConfig(GroceryStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(Office, num=50, num_assignees=150, state_opts=dict(visitor_capacity=0)),
-        LocationConfig(School, num=100, num_assignees=4, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Home, num=289253),
+        LocationConfig(GroceryStore, num=3857, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Office, num=4500, num_assignees=150, state_opts=dict(visitor_capacity=0)),
+        LocationConfig(School, num=9000, num_assignees=4, state_opts=dict(visitor_capacity=30)),
         LocationConfig(University, num=1, num_assignees=55000, state_opts=dict(visitor_capacity=3000)),
-        LocationConfig(Hospital, num=10, num_assignees=30, state_opts=dict(patient_capacity=10)),
-        LocationConfig(RetailStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(HairSalon, num=40, num_assignees=3, state_opts=dict(visitor_capacity=5)),
-        LocationConfig(Restaurant, num=20, num_assignees=6, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(Bar, num=20, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Hospital, num=1000, num_assignees=30, state_opts=dict(patient_capacity=10)),
+        LocationConfig(RetailStore, num=3857, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(HairSalon, num=3857, num_assignees=3, state_opts=dict(visitor_capacity=5)),
+        LocationConfig(Restaurant, num=1900, num_assignees=6, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Bar, num=1900, num_assignees=5, state_opts=dict(visitor_capacity=30)),
     ],
     person_routine_assignment=DefaultPersonRoutineAssignment())
 
@@ -36,8 +39,8 @@ austin_config = PandemicSimConfig(
 town_config = PandemicSimConfig(
     num_persons=10000,
     location_configs=[
-        LocationConfig(Home, num=3000),
-        LocationConfig(GroceryStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),
+        LocationConfig(Home, num=3000),  # 10:3
+        LocationConfig(GroceryStore, num=40, num_assignees=5, state_opts=dict(visitor_capacity=30)),  # 250
         LocationConfig(Office, num=50, num_assignees=150, state_opts=dict(visitor_capacity=0)),
         LocationConfig(School, num=100, num_assignees=4, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Hospital, num=10, num_assignees=30, state_opts=dict(patient_capacity=10)),
