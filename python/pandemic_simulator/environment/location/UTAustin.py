@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 from ..interfaces import NonEssentialBusinessLocationState, ContactRate, SimTimeTuple, NonEssentialBusinessBaseLocation
 
-__all__ = ['University', 'UniversityState']
+__all__ = ['UTAustin', 'UniversityState']
 
 
 @dataclass
@@ -15,7 +15,7 @@ class UniversityState(NonEssentialBusinessLocationState):
     # TODO: model different weekday and weekend activities
 
 
-class University(NonEssentialBusinessBaseLocation[UniversityState]):
+class UTAustin(NonEssentialBusinessBaseLocation[UniversityState]):
     """Implements a simple university"""
 
     state_type = UniversityState

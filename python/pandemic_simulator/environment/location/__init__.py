@@ -8,6 +8,8 @@ from .hospital import *
 from .office import *
 from .restaurant import *
 from .school import *
-from .university import *
+from .UTAustin import *
+from .zilkerPark import *
+from .bartonCreekMall import *
 from .store import *
 from .utils import *
