@@ -26,8 +26,6 @@ austin_config = PandemicSimConfig(
         LocationConfig(GroceryStore, num=3857, num_assignees=5, state_opts=dict(visitor_capacity=30)),
         LocationConfig(Office, num=4500, num_assignees=150, state_opts=dict(visitor_capacity=0)),
         LocationConfig(School, num=9000, num_assignees=4, state_opts=dict(visitor_capacity=30)),
-        LocationConfig(University, num=1, num_assignees=55000, state_opts=dict(visitor_capacity=3000)),
-        LocationConfig(Hospital, num=1000, num_assignees=30, state_opts=dict(patient_capacity=10)),
         LocationConfig(RetailStore, num=3857, num_assignees=5, state_opts=dict(visitor_capacity=30)),
         LocationConfig(HairSalon, num=3857, num_assignees=3, state_opts=dict(visitor_capacity=5)),
         LocationConfig(Restaurant, num=1900, num_assignees=6, state_opts=dict(visitor_capacity=30)),

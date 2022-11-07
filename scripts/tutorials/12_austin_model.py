@@ -26,7 +26,7 @@ def run_pandemic_sim() -> None:
 
     # run regulation steps in the simulator
     # for _ in trange(5, desc='Simulating day'):
-    for _ in trange(1, desc='Simulating day'):
+    for _ in trange(65, desc='Simulating day'):
         sim.step_day()
         viz.record(sim.state)
 
